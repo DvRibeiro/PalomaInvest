@@ -2,7 +2,7 @@ import fundamentus as fun
 from sqlalchemy.orm import Session
 from datetime import datetime
 
-from config import engine
+from app.config.config import engine
 from models import Empresa, Setor, Indicador, Periodo, FatoFinanceiro
 
 from sqlalchemy.orm import sessionmaker

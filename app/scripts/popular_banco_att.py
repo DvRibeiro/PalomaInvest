@@ -3,7 +3,7 @@ from sqlalchemy.orm import sessionmaker
 from datetime import datetime
 import fundamentus as fun
 import pandas as pd
-from config import engine
+from app.config.config import engine
 from models import Empresa, Setor, Indicador, Periodo, FatoFinanceiro, Base
 
 # Configuração da conexão com o banco PostgreSQL
