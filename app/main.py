@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from sqlalchemy.orm import declarative_base
-from config.config import engine
+from config.DBconfig import engine
 from models import Empresa, Indicador, FatoFinanceiro, Periodo, Setor, Base
 
 try:

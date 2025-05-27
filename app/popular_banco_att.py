@@ -1,10 +1,8 @@
-from sqlalchemy.orm import Session
 from sqlalchemy.orm import sessionmaker
 from datetime import datetime
 import fundamentus as fun
-import pandas as pd
-from app.config.config import engine
-from models import Empresa, Setor, Indicador, Periodo, FatoFinanceiro, Base
+from config.DBconfig import engine
+from models import Empresa, Setor, Indicador, Periodo, FatoFinanceiro
 
 # Configuração da conexão com o banco PostgreSQL
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
