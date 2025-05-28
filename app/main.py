@@ -1,11 +1,7 @@
-from sqlalchemy.orm import Session
-from sqlalchemy.orm import declarative_base
-from config.DBconfig import engine
-from models import Empresa, Indicador, FatoFinanceiro, Periodo, Setor, Base
+from fastapi import FastAPI
+from app.routers import acoes_router, ai_router
 
-try:
-    # Criar todas as tabelas no banco de dados
-    Base.metadata.create_all(bind=engine)
-    print("Tabelas criadas com sucesso!")  
-except Exception as e:
-    print(f"Erro ao criar as tabelas: {e}") 
+app = FastAPI()
+
+app.include_router(acoes_router.router)
+app.include_router(ai_router.router)
