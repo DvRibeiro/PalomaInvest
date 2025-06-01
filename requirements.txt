@@ -1,6 +1,7 @@
-fastapi[standard]
-uvicorn
-sqlalchemy
-psycopg2-binary
-fundamentus
-python-dotenv
+fastapi[standard]       # Inclui Pydantic, starlette, httpx e muito mais
+uvicorn[standard]       # Recomendado para execução com suporte a reload e websockets
+sqlalchemy[asyncio]     # Suporte ao SQLAlchemy assíncrono
+asyncpg                 # Driver assíncrono para PostgreSQL
+psycopg2-binary         # (opcional) Para ferramentas externas que ainda usam o driver síncrono
+fundamentus            # Biblioteca que você está usando para dados financeiros
+python-dotenv           # Carregamento de variáveis de ambiente
