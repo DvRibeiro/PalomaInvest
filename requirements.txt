@@ -3,5 +3,6 @@ uvicorn[standard]       # Recomendado para execução com suporte a reload e web
 sqlalchemy[asyncio]     # Suporte ao SQLAlchemy assíncrono
 asyncpg                 # Driver assíncrono para PostgreSQL
 psycopg2-binary         # (opcional) Para ferramentas externas que ainda usam o driver síncrono
-fundamentus            # Biblioteca que você está usando para dados financeiros
+fundamentus             # Biblioteca que você está usando para dados financeiros
 python-dotenv           # Carregamento de variáveis de ambiente
+google-generativeai

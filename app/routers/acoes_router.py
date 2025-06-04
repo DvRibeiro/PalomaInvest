@@ -17,7 +17,6 @@ async def list_all_acoes_indicadores(session: AsyncSession = Depends(get_session
 
 @router.get("/acoes/{ticker}")
 async def get_acao(ticker: str, session: AsyncSession = Depends(get_session)):
-    print('chamou')
     controller = AcoesController(session)
     return await controller.get_acao(ticker)
 
