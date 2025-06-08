@@ -60,9 +60,8 @@ class AiService:
             indicadores_map = {d["nome"].lower().replace(" ", "_"): d["valor"] for d in dados.get("indicadores", [])}
 
             campos_relevantes = [
-                "codigo_acao", "nome_empresa", "setor",
-                "cotacao", "pl", "pvp", "dividend_yield", "roe",
-                "lucro_liquido_12m", "crescimento_receita_5_anos", "patrimonio_liquido",
+                "cotacao", "pl", "pvp", "div_yield", "roe",
+                "lucro_liquido_12m", "cres_rec_5a", "patrim_liq",
                 "valor_de_mercado", "ativo", "vpa", "lpa"
             ]
 
