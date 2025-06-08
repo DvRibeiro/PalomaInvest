@@ -11,7 +11,8 @@ public interface ApiService {
 
     @GET("detalhes/")
     Call<List<Stock>> getStocks();
-
+    @GET("acoes/detalhes/{ticker}")
+    Call<Stock> getStockByTicker(@Path("ticker") String ticker);
     @POST("api/gerarTese/{ticker}")
     Call<Thesis> getIaThesis(@Path("ticker") String ticker, @Body TeseRequest body);
 }

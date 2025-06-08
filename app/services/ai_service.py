@@ -16,8 +16,6 @@ class AiService:
 
             {dados}
 
-            Valor intrínseco estimado: {valor_intrinseco}
-
             Siga este roteiro de análise:
 
             1. **Pontos fortes**: Destaque os indicadores positivos (ex: ROE alto, baixo endividamento, boa margem).
@@ -39,18 +37,21 @@ class AiService:
 """
 
     def calcula_valor_intrinseco(self, dados_usuario, dados_tese):
-        lpa = dados_tese.get("lpa", 0)
-        vpa = dados_tese.get("vpa", 0)
+        pl = dados_tese.get("pl", 0)
+        pvp = dados_tese.get("pvp", 0)
+        if dados_usuario:
+            vpa = float(dados_usuario["vpa"])
+            lpa = float(dados_usuario["lpa"])
+        else:
+            vpa = float(dados_tese["vpa"])
+            lpa = float(dados_tese["lpa"])
 
         try:
-            if dados_usuario:
-                constante = float(dados_usuario["pl"]) * float(dados_usuario["pvp"])
-            else:
-                constante = float(dados_tese["pl"]) * float(dados_tese["pvp"])
-            vi = math.sqrt(constante * float(lpa) * float(vpa))
-            return f"√(P/L * P/VP * LPA * VPA) = R$ {vi:.2f}"
-        except Exception:
-            return "Não foi possível calcular o valor intrínseco."
+            constante = lpa * vpa
+            vi = math.sqrt(float(pl) * float(pvp) * constante)
+            return f"√(P/L({float(pl)}) * P/VP({float(pvp)}) * LPA({float(lpa)}) * VPA({float(vpa)})) = R$ {vi:.2f}"
+        except Exception as e:
+            return f"Erro ao calcular o valor intrínseco: {type(e).__name__} - {e}"
 
     async def filtrar_indicadores_tese(self):
         try:
@@ -90,8 +91,7 @@ class AI:
 
         texto_padrao = self.service.get_texto_padrao().format(
             ticker=self.service.ticker,
-            dados=dados_formatados,
-            valor_intrinseco=valor_intrinseco
+            dados=dados_formatados
         )
 
         try:

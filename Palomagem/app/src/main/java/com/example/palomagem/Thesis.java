@@ -10,6 +10,9 @@ public class Thesis {
     @SerializedName("tese")
     private String thesisText;
 
+    @SerializedName("vi")
+    private String vi;
+
     // Getters
     public String getTicker() {
         return ticker;
@@ -18,4 +21,6 @@ public class Thesis {
     public String getThesisText() {
         return thesisText;
     }
+
+    public String getVi() { return vi; }
 }

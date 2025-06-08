@@ -10,4 +10,10 @@ public class Periodo implements Serializable {
 
     @SerializedName("trimestre")
     public int trimestre;
+
+    @Override
+    public String toString() {
+        return " " + ((int) ano) + "/" + trimestre;
+    }
+
 }

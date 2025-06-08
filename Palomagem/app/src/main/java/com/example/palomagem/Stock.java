@@ -26,6 +26,10 @@ public class Stock implements Serializable {
         return ticker;
     }
 
+    public Periodo getPeriodo() {
+        return periodo;
+    }
+
     public String getName() {
         return name;
     }

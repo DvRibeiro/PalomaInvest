@@ -1,6 +1,8 @@
 package com.example.palomagem;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,12 +10,14 @@ import androidx.appcompat.widget.Toolbar;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import io.noties.markwon.Markwon;
 
 public class IaThesisActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private TextView textViewThesisTitle;
     private TextView textViewIaThesisContent;
+    private TextView textViewIntrinsicValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +33,7 @@ public class IaThesisActivity extends AppCompatActivity {
 
         textViewThesisTitle = findViewById(R.id.textViewThesisTitle);
         textViewIaThesisContent = findViewById(R.id.textViewIaThesisContent);
+        textViewIntrinsicValue = findViewById(R.id.textViewIntrinsicValue);
 
         String stockTicker = getIntent().getStringExtra("STOCK_TICKER");
         if (stockTicker != null) {
@@ -44,10 +49,10 @@ public class IaThesisActivity extends AppCompatActivity {
     private void fetchIaThesis(String ticker) {
         textViewIaThesisContent.setText("Gerando tese da IA...");
 
-        double lpaExemplo = 2.5;
-        double vpaExemplo = 15.8;
+        double lpa = getIntent().getDoubleExtra("LPA", 0);
+        double vpa = getIntent().getDoubleExtra("VPA", 0);
 
-        TeseRequest requestBody = new TeseRequest(lpaExemplo, vpaExemplo);
+        TeseRequest requestBody = new TeseRequest(lpa, vpa);
 
         ApiService apiService = RetroFitClient.getClient().create(ApiService.class);
 
@@ -58,7 +63,20 @@ public class IaThesisActivity extends AppCompatActivity {
             public void onResponse(Call<Thesis> call, Response<Thesis> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     String thesisText = response.body().getThesisText();
-                    textViewIaThesisContent.setText(thesisText);
+                    String valorIntrinseco = response.body().getVi();
+
+                    if (valorIntrinseco != null && !valorIntrinseco.isEmpty()) {
+                        textViewIntrinsicValue.setText("Valor Intrínseco: " + valorIntrinseco);
+                    } else {
+                        textViewIntrinsicValue.setText("Valor Intrínseco: Não foi possível calcular.");
+                    }
+
+
+                    // Renderizando markdown
+                    Markwon markwon = Markwon.create(IaThesisActivity.this);
+                    markwon.setMarkdown(textViewIaThesisContent, thesisText != null ? thesisText : "Nenhum conteúdo gerado.");
+
+
                 } else {
                     textViewIaThesisContent.setText("Não foi possível gerar a tese para esta ação. Código: " + response.code());
                 }

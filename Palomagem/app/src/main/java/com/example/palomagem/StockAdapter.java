@@ -38,15 +38,20 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHol
         holder.textViewStockTicker.setText(currentStock.getTicker());
 
         double precoOriginal = currentStock.getPreco();
-        double precoCorrigido = precoOriginal / 100.0;
+        //double precoCorrigido = precoOriginal / 100.0;
 
         NumberFormat formatadorMoeda = NumberFormat.getCurrencyInstance(new Locale("pt", "BR"));
-        String precoFormatado = formatadorMoeda.format(precoCorrigido);
+        String precoFormatado = formatadorMoeda.format(precoOriginal);
         holder.textViewStockPrice.setText(precoFormatado);
 
+        // GARANTA QUE SEU ONCLICKLISTENER ESTEJA EXATAMENTE ASSIM:
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, StockDetailActivity.class);
-            intent.putExtra("STOCK_OBJECT", currentStock);
+
+            // Enviamos APENAS o Ticker (uma String), e não o objeto inteiro.
+            // Usamos a constante que definimos na StockDetailActivity para garantir que a chave é a mesma.
+            intent.putExtra(StockDetailActivity.EXTRA_TICKER, currentStock.getTicker());
+
             context.startActivity(intent);
         });
     }

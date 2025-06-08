@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".StockDetailActivity"
-    android:background="@drawable/backhome">
+    android:background="@drawable/backia">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -27,6 +27,7 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
+            android:id="@+id/containerIndicadores"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -36,19 +37,18 @@
                 android:id="@+id/textViewDetailStockName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                android:textColor="#FFFFFF"
-                tools:text="Nome da Empresa da Ação"
-                />
+                tools:text="Nome da Empresa da Ação" />
 
             <TextView
                 android:id="@+id/textViewDetailStockTicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:textSize="18sp"
                 android:textColor="#FFFFFF"
+                android:textSize="18sp"
                 tools:text="TICKER: EMPX3" />
 
             <TextView
@@ -56,57 +56,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:textColor="#FFFFFF"
                 android:textSize="20sp"
-                android:textColor="#FFFFFF"
                 tools:text="Preço: R$ 00,00" />
-
-            <TextView
-                android:id="@+id/textViewDetailSetor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                tools:text="Setor: Intermediários Financeiros"
-                android:textColor="#FFFFFF"/>
-
-            <TextView
-                android:id="@+id/textViewDetailPL"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:textSize="16sp"
-                tools:text="P/L: 3.74"
-                android:textColor="#FFFFFF"/>
-
-            <TextView
-                android:id="@+id/textViewDetailROE"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:textSize="16sp"
-                tools:text="ROE: 19.1%"
-                android:textColor="#FFFFFF"/>
-
-            <TextView
-                android:id="@+id/textViewDetailVariation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:textSize="16sp"
-                tools:text="Variação: +0.00%"
-                android:textColor="#FFFFFF"/>
-
-
-            <TextView
-                android:id="@+id/textViewDetailDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:textSize="14sp"
-                android:textColor="#FFFFFF"
-                tools:text="Descrição longa sobre a empresa e a ação, desempenho histórico, notícias relevantes, etc. Este conteúdo virá da API."
-                />
 
             <Button
                 android:id="@+id/buttonGoToThesis"
